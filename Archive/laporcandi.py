@@ -73,6 +73,17 @@ def lapor_id_murah(candi):
     idx +=1
     return idx
 
+def kosong (candi):
+    i = 0
+    empty = True
+    while i > 100:
+        if candi != [None, None, None, None, None]:
+            empty = False
+            i += 1
+        else:
+            i += 1
+    return empty
+
 
 #PROGRAM UTAMA
 def laporan_candi(candi):
@@ -80,5 +91,9 @@ def laporan_candi(candi):
     print(f"> Total Pasir yang digunakan: {lapor_jumlah_bahan(candi, 0)}")
     print(f"> Total Batu yang digunakan: {lapor_jumlah_bahan(candi, 1)}")
     print(f"> Total Air yang digunakan:{lapor_jumlah_bahan(candi, 2)}")
-    print(f"> ID Candi Termahal: {lapor_id_mahal(candi)} (Rp {lapor_candi_mahal(candi)})")
-    print(f"> ID Candi Termurah: {lapor_id_murah(candi)} (Rp {lapor_candi_murah(candi)})")
+    if kosong(candi):
+        print(f"> ID Candi Termahal: - ")
+        print(f"> ID Candi Termurah: -")
+    else:
+        print(f"> ID Candi Termahal: {lapor_id_mahal(candi)} (Rp {lapor_candi_mahal(candi)})")
+        print(f"> ID Candi Termurah: {lapor_id_murah(candi)} (Rp {lapor_candi_murah(candi)})")

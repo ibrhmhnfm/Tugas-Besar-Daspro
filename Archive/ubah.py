@@ -5,12 +5,12 @@ def ubahjin(users, username) :
     if  function.inlist(user,username,102): 
         idx = function.get_index(user, username, 102)
         if users[idx][2]=="pengumpul" :
-            yakin=input("Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ")
+            yakin=input('Jin ini bertipe “Pengumpul", Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
             if yakin=="Y" or yakin =="y":
                 users[idx][2]="pembangun"
                 print("Jin telah berhasil diubah") 
         elif users[idx][2]=="pembangun" : 
-            yakin=input("Yakin ingin mengubah ke tipe “pengumpul” (Y/N)? ")
+            yakin=input('Jin ini bertipe “Pembangun", Yakin ingin mengubah ke tipe “Pengumpul” (Y/N)? ')
             if yakin=="Y" or yakin =="y" :
                 users[idx][2]="pengumpul"
                 print("jin telah berhasil diubah")

@@ -87,9 +87,7 @@ while loop:
         print("Hapus jin hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="batchbangun"):
       if (akses == "bandung_bondowoso"):
-        print(bahan_bangunan)
         (users, bahan_bangunan, candi) = batchbangun.batchbangun(users, bahan_bangunan, candi)
-        print(bahan_bangunan)
       else:
         print("Batch bangun hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="batchkumpul"):

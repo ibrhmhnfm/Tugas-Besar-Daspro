@@ -72,10 +72,6 @@ def batchbangun (users, bahan_bangunan, candi):
                 idx = index_isi_candi(candi)
                 candi[idx][0]= idx+1
                 candi[idx][1]= username_pembangun(users)[i]
-                print(butuh_pasir)
-                print(butuh_batu)
-                print(butuh_air)
-                print(username_pembangun(users))
                 candi[idx][2]= butuh_pasir[i]
                 candi[idx][3]= butuh_batu[i]
                 candi[idx][4]= butuh_air[i]
