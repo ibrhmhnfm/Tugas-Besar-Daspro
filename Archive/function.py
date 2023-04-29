@@ -139,6 +139,7 @@ def absolute (int):
         int = 0 - int
     return int
 
+# Replace All
 # mengembalikan array baru dengan elemen pada index yang ditentukan telah dihapus
 # (pengganti keyword del)
 def del_by_index(li, index, length):

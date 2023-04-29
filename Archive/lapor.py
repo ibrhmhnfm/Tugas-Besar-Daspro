@@ -51,8 +51,5 @@ def laporjin(users, username, bahan_bangunan, candi):
     print(f"> Jin terajin :{hitung_rajin_malas(users, username, candi)[0]}")
     print(f"> Jin termalas :{hitung_rajin_malas(users, username, candi)[1]}")
     print(f"> Jumlah Pasir : {bahan_bangunan[0][2]} unit")
-    print(f"> Jumlah air : {bahan_bangunan[1][2]} unit")
-    print(f"> Jumlah Batu :{bahan_bangunan[2][2]} unit")
-
-
-    
+    print(f"> Jumlah Batu : {bahan_bangunan[1][2]} unit")
+    print(f"> Jumlah Air :{bahan_bangunan[2][2]} unit")

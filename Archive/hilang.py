@@ -13,8 +13,7 @@ def hilang(users, candi, username) :
                 username[function.get_index(user, username, 102)] = None
                 for i in range(100) :
                     if str(candi[i][1]) == user   :       
-                        for j in range(5) :
-                            candi[i][j]= None
+                        candi[i] = [None, None, None, None, None]
                 status = False
             elif yakin =="N" or yakin =="n":
                 print("Jin tidak jadi dihapus")

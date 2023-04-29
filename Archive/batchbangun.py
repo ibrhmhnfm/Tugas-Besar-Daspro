@@ -1,64 +1,88 @@
-#FUNGSIONAL YANG DIPERLUKAN
+from random import randint
 import function
-def hitung_pembangun(users) :
-    pembangun=0
-    for i in range(102) : 
-        if users[i][2]=="pembangun" :
-            pembangun+=1
-    return pembangun
-def hitung_pasir(candi) :
-    pasir=0
-    for i in range(100) :
-        if candi [i][0] != None:
-            pasir+= int(candi[i][2])
-    return pasir
-def hitung_batu(candi) :
-    batu=0
-    for i in range(100) :
-        if candi [i][0] != None:
-            batu+=int(candi[i][3])
-    return batu
-def hitung_air(candi) :
-    air=0
-    for i in range(100) :
-        if candi [i][0] != None:
-            air+=int(candi[i][4])
-    return air        
 
-#PROGRAM UTAMA
-import random
-def batchbangun(users, bahan_bangunan, candi) :
-    if hitung_pembangun(users)>0 :
-        for i in range(hitung_pembangun(users)) : 
-            candi[i][2]=int(candi[i][2]) #hitung pasir 
-            candi[i][2]+=random.randint(0,5)
-            candi[i][2]=str(candi[i][2])
-            candi[i][3]=int(candi[i][3]) #hitung batu 
-            candi[i][3]+=random.randint(0,5)
-            candi[i][3]=str(candi[i][3])
-            candi[i][4]=int(candi[i][4]) #hitung pasir air
-            candi[i][4]+=random.randint(0,5)
-            candi[i][4]=str(candi[i][4])
-        sisapasir= int(bahan_bangunan[0][2])-hitung_pasir(candi)
-        sisabatu= int(bahan_bangunan[1][2])-hitung_batu(candi)
-        sisaair= int(bahan_bangunan[2][2])-hitung_pasir(candi)
-        
-        print(f"Mengerahkan {hitung_pembangun(users)} jin untuk membangun candi dengan total bahan {hitung_pasir(candi)} pasir,{hitung_batu(candi)} batu, dan {hitung_air(candi)} air.")
-        if sisapasir>=0 and sisabatu>=0 and sisaair >=0 : 
-            print(f"Jin berhasil membangun total {hitung_pembangun(users)} candi.")
-        else :
-            print(f"Bangun gagal. Kurang {function.absolute(sisapasir)} pasir, {function.absolute(sisabatu)} batu, dan {function.absolute(sisaair)} air.")
+# fungsional tambahan
+def hitungpembangun (users):
+    count = 0
+    for i in range (102):
+        if users[i][2] == "pembangun":
+            count += 1
+    return count
+
+def username_pembangun (users):
+    arrnew = []
+    j = 0
+    for i in range (102):
+        if users[i][2] == "pembangun":
+            arrnew = function.KonsDot(arrnew, j, users[i][0])
+            j += 1
+    return arrnew
+
+# randomizer_kebutuhan
+def randomizer_kebutuhan ():
+    butuh_pasir = randint(1,5)
+    butuh_batu = randint(1,5)
+    butuh_air = randint(1,5)
+    return (butuh_pasir, butuh_batu, butuh_air)
+
+# pengecek ada-kurangnya bahan
+def bahan_cukup (bahan_bangunan, total_butuh_pasir, total_butuh_batu, total_butuh_air):
+    cukup = False
+    sisa_pasir = int(bahan_bangunan[0][2]) - total_butuh_pasir
+    sisa_batu = int(bahan_bangunan[1][2]) - total_butuh_batu
+    sisa_air = int(bahan_bangunan[2][2]) - total_butuh_air
+    if sisa_pasir >= 0 and sisa_batu >= 0 and sisa_air >= 0:
+        cukup = True
+    return (cukup, sisa_pasir, sisa_batu, sisa_air)
+# mengassign candi baru
+def index_isi_candi (candi):
+    idx = 0
+    while candi[idx] != [None, None, None, None, None]:
+        idx += 1
+    return idx
+
+# Program utama
+def batchbangun (users, bahan_bangunan, candi):
+    r = hitungpembangun(users)
+    candi_bangun = 0
+    if  r > 0:
+        butuh_pasir = []
+        butuh_batu = []
+        butuh_air = []
+        for i in range (r):
+            butuh_pasir = function.KonsDot(butuh_pasir, i, randomizer_kebutuhan()[0])
+            butuh_batu = function.KonsDot(butuh_batu, i, randomizer_kebutuhan()[1])
+            butuh_air = function.KonsDot(butuh_air, i, randomizer_kebutuhan()[2])
+        total_butuh_pasir = function.sumarr(butuh_pasir, r)
+        total_butuh_batu = function.sumarr(butuh_batu, r)
+        total_butuh_air = function.sumarr(butuh_air, r)
+        print(f"Mengerahkan {r} jin untuk membangun candi dengan total bahan {total_butuh_pasir} pasir, {total_butuh_batu} batu, dan {total_butuh_air} air.")
+        sisa_pasir = bahan_cukup(bahan_bangunan, total_butuh_pasir, total_butuh_batu, total_butuh_air )[1]
+        sisa_batu = bahan_cukup(bahan_bangunan, total_butuh_pasir, total_butuh_batu, total_butuh_air )[2]
+        sisa_air = bahan_cukup(bahan_bangunan, total_butuh_pasir, total_butuh_batu, total_butuh_air )[3]
+        if bahan_cukup(bahan_bangunan, total_butuh_pasir, total_butuh_batu, total_butuh_air )[0]:
+            candi_bangun = r
+            print(f"Jin berhasil membangun total {candi_bangun} candi.")
+            bahan_bangunan[0][2]=sisa_pasir
+            bahan_bangunan[1][2]=sisa_batu
+            bahan_bangunan[2][2]=sisa_air
+            sisa = candi_bangun
+            i = 0
+            while sisa != 0:
+                idx = index_isi_candi(candi)
+                candi[idx][0]= idx+1
+                candi[idx][1]= username_pembangun(users)[i]
+                print(butuh_pasir)
+                print(butuh_batu)
+                print(butuh_air)
+                print(username_pembangun(users))
+                candi[idx][2]= butuh_pasir[i]
+                candi[idx][3]= butuh_batu[i]
+                candi[idx][4]= butuh_air[i]
+                i += 1
+                sisa -= 1
+        else:
+            print(f"Bangun gagal. Kurang {function.absolute(sisa_pasir)} pasir, {function.absolute(sisa_batu)} batu, dan {function.absolute(sisa_air)} air.")
     else : 
         print("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
     return (users, bahan_bangunan, candi)
-
-#Test
-
-#KOMEN #for i in range(1,4) : 
-
-    #bahan_bangunan[i][2]=int(bahan_bangunan[i][2])
-    #bahan_bangunan[i][2]+=random.randint(0,5)
-    #bahan_bangunan[i][2]=str(bahan_bangunan[i][2])
-#bahan_bangunan[1][2] = int(bahan_bangunan[1][2])
-    #bahan_bangunan[1][2] += random.randint(0,5)
-    #bahan_bangunan[1][2] = str(bahan_bangunan[1][2]

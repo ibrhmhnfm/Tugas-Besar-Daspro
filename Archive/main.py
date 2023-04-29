@@ -42,7 +42,7 @@ users = function.KonsDot(users, 2, [])
 candi = function.KonsDot(candi, 0, [])
 users = initialize.initialize_final(initialize.initialize(users, 102, 3), 103)
 candi = initialize.initialize_final(initialize.initialize(candi, 100, 5), 101)
-# x = ["Admin","gacha4lyfe","admin" ] #ini buat bikin akses admin, belum gw adaptasiin ke semua. masi testing
+# x = ["Admin","gacha4lyfe","admin" ] # buat ngetes (testing)
 # users = function.Konso(x, users, 102)
 username = initialize.initialize_username(username, users)
 
@@ -72,9 +72,7 @@ while loop:
         print("Berhasil logout")
     elif (masukan =="summonjin"):
       if (akses == "bandung_bondowoso"):
-        tuple = summon.summon_jin(users, username)
-        users = tuple[0]
-        username = tuple[1]
+        (users, username) = summon.summon_jin(users, username)
       else:
         print("Summon jin hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="ubahjin"):
@@ -84,28 +82,19 @@ while loop:
         print("Ubah jin hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="hapusjin"):
       if (akses == "bandung_bondowoso"):
-        tuple = hilang.hilang(users, candi, username)
-        users = tuple[0]
-        candi = tuple[1]
-        username = tuple[2]
+        (users, candi, username)= hilang.hilang(users, candi, username)
       else:
         print("Hapus jin hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="batchbangun"):
       if (akses == "bandung_bondowoso"):
         print(bahan_bangunan)
-        tuple = batchbangun.batchbangun(users, bahan_bangunan, candi)
-        users = tuple[0]
-        bahan_bangunan = tuple[1]
-        candi = tuple[2]
+        (users, bahan_bangunan, candi) = batchbangun.batchbangun(users, bahan_bangunan, candi)
         print(bahan_bangunan)
       else:
         print("Batch bangun hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="batchkumpul"):
       if (akses == "bandung_bondowoso"):
-        tuple = batchkumpul.batchkumpul(users, bahan_bangunan, candi)
-        users = tuple[0]
-        bahan_bangunan = tuple[1]
-        candi = tuple[2]
+        (users, bahan_bangunan, candi) = batchkumpul.batchkumpul(users, bahan_bangunan, candi)
       else:
         print("Batch kumpul hanya bisa diakses oleh akun Bandung Bondowoso")
     elif (masukan =="laporanjin"):

@@ -1,4 +1,5 @@
 import function
+import time
 def summon_jin(users, username) : 
     global tampung_jin
     tampung_jin = users
@@ -35,7 +36,6 @@ def summon_jin(users, username) :
             while cek :   
                 user=str(input("Masukkan username jin: "))
                 i=0
-                print(function.inlist(user,username,102))
                 status=True
                 while status:
                     if function.inlist(user,username,102)==True : 
@@ -61,6 +61,10 @@ def summon_jin(users, username) :
             j = 102
         else:
             j += 1
+    print("Mengumpulkan sesajen...")
+    print("Menyerahkan sesajen...")
+    print("Membacakan mantra...")
+    print(f"\nJin {user} berhasil dipanggil!")
     return (tampung_jin, username)
 def hitung_pengumpul () :
     global tampung_jin
