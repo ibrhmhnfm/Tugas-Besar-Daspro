@@ -42,8 +42,8 @@ users = function.KonsDot(users, 2, [])
 candi = function.KonsDot(candi, 0, [])
 users = initialize.initialize_final(initialize.initialize(users, 102, 3), 103)
 candi = initialize.initialize_final(initialize.initialize(candi, 100, 5), 101)
-x = ["Admin","gacha4lyfe","admin" ]
-users = function.Konso(x, users, 102)
+# x = ["Admin","gacha4lyfe","admin" ] #ini buat bikin akses admin, belum gw adaptasiin ke semua. masi testing
+# users = function.Konso(x, users, 102)
 username = initialize.initialize_username(username, users)
 
 #MAIN PROGRAM/ALGORITHM
