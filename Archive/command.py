@@ -137,20 +137,6 @@ def split(li, banyak, str):  # ganti .split()
     return listnew
 
 
-def max_array(arr, r):
-    max = 0
-    for i in range(r):
-        if arr[i] > max:
-            max = arr[i]
-    return max
-
-
-def min_array(arr, r):
-    min = 100000000
-    for i in range(r):
-        if arr[i] < min:
-            min = arr[i]
-    return min
 
 # mengembalikan array baru dengan elemen pada index yang ditentukan telah dihapus
 # (pengganti keyword del)
